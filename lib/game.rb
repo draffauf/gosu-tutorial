@@ -16,6 +16,3 @@ class Game < Gosu::Window
     'Game Window Caption'
   end
 end
-
-# window = Game.new
-# window.show
