@@ -6,7 +6,7 @@ describe GameWindow do
       @game_window = GameWindow.new
     end
 
-    it "returns a Game object" do
+    it "returns a GameWindow object" do
       expect(@game_window).to be_an_instance_of GameWindow
     end
 
