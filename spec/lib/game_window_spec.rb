@@ -19,6 +19,15 @@ describe GameWindow do
     end
   end
 
+  describe ".button_down" do
+    it "closes the window when the button pressed is Escape" do
+      game_window = GameWindow.new
+      escape_key = Gosu::KbEscape
+      expect_any_instance_of(GameWindow).to receive(:close)
+      game_window.button_down(escape_key)
+    end
+  end
+
   describe ".caption" do
     it "returns a default caption" do
       game = GameWindow.new
