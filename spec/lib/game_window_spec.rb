@@ -1,37 +1,34 @@
 require_relative '../spec_helper'
 
 describe GameWindow do
+  let(:game_window) { GameWindow.new }
+  let(:width)       { 800 }
+  let(:height)      { 600 }
+  let(:keys)        { { escape: Gosu::KbEscape } }
   describe ".new" do
-    before do
-      @game_window = GameWindow.new
-    end
-
     it "returns a GameWindow object" do
-      expect(@game_window).to be_an_instance_of GameWindow
+      expect(game_window).to be_an_instance_of GameWindow
     end
 
     it "sets a default width" do
-      expect(@game_window.width).to eq 800
+      expect(game_window.width).to eq width
     end
 
     it "sets a default height" do
-      expect(@game_window.height).to eq 600
+      expect(game_window.height).to eq height
     end
   end
 
   describe ".button_down" do
     it "closes the window when the button pressed is Escape" do
-      game_window = GameWindow.new
       expect_any_instance_of(InputManager).to receive(:button_down)
-      escape_key = Gosu::KbEscape
-      game_window.button_down(escape_key)
+      game_window.button_down keys[:escape]
     end
   end
 
   describe ".caption" do
     it "returns a default caption" do
-      game = GameWindow.new
-      expect(game.caption).to eq 'Game Window Caption'
+      expect(game_window.caption).to eq 'Game Window Caption'
     end
   end
 
