@@ -22,20 +22,10 @@ describe GameWindow do
 
   describe ".button_down" do
     it "closes the window when the button pressed is Escape" do
-      expect_any_instance_of(InputManager).to receive(:button_down)
+      Game.game_window = game_window
+      Game.input_manager = InputManager.new.tap { |im| im.target = game_window }
+      expect(game_window).to receive(:close)
       game_window.button_down keys[:escape]
     end
-  end
-
-  describe ".caption" do
-    it "returns a default caption" do
-      expect(game_window.caption).to eq 'Game Window Caption'
-    end
-  end
-
-  describe ".draw" do
-  end
-
-  describe ".update" do
   end
 end

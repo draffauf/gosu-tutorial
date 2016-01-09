@@ -4,7 +4,7 @@ class GameWindow < Gosu::Window
   def initialize width  = 800,
                  height = 600
     super width, height
-    self.caption = caption
+    self.caption = 'Game Window Caption'
   end
 
   def update
@@ -14,10 +14,10 @@ class GameWindow < Gosu::Window
   end
 
   def button_down id
-    InputManager.new.button_down id
+    Game.input_manager.button_down id
   end
 
-  def caption
-    'Game Window Caption'
+  def receive_input input
+    close if input == Gosu::KbEscape
   end
 end
