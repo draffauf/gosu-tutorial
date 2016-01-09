@@ -5,6 +5,7 @@ describe GameWindow do
   let(:width)       { 800 }
   let(:height)      { 600 }
   let(:keys)        { { escape: Gosu::KbEscape } }
+
   describe ".new" do
     it "returns a GameWindow object" do
       expect(game_window).to be_an_instance_of GameWindow
