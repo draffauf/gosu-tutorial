@@ -11,9 +11,16 @@ describe Map do
     it { expect(Map::DEFAULT_TILE_SIZE).to eq 32 }
   end
 
+  describe ".tile_size" do
+    it "has a tile size" do
+      map = Map.new(Map::DEFAULT_TILE_SIZE + 10)
+      expect(map.tile_size).to eq(Map::DEFAULT_TILE_SIZE + 10)
+    end
+  end
+
   describe ".draw" do
     it "draw the tiles" do
-      expect(map.tiles.first).to receive(:draw)
+      expect(map).to receive(:draw_tile).exactly(50).times
       map.draw
     end
   end
