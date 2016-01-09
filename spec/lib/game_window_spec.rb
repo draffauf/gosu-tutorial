@@ -1,10 +1,12 @@
 require_relative '../spec_helper'
 
 describe GameWindow do
-  let(:game_window) { GameWindow.new }
-  let(:width)       { 800 }
-  let(:height)      { 600 }
-  let(:keys)        { { escape: Gosu::KbEscape } }
+  let(:game_window)   { GameWindow.new }
+  let(:scene)         { Scene.new }
+  let(:input_manager) { InputManager.new.tap { |im| im.target = game_window } }
+  let(:width)         { 800 }
+  let(:height)        { 600 }
+  let(:keys)          { { escape: Gosu::KbEscape } }
 
   describe ".new" do
     it "returns a GameWindow object" do
@@ -22,10 +24,31 @@ describe GameWindow do
 
   describe ".button_down" do
     it "closes the window when the button pressed is Escape" do
-      Game.game_window = game_window
-      Game.input_manager = InputManager.new.tap { |im| im.target = game_window }
+      Game.game_window   = game_window
+      Game.input_manager = input_manager
+
       expect(game_window).to receive(:close)
       game_window.button_down keys[:escape]
+    end
+  end
+
+  describe ".update" do
+    it "updates the scene" do
+      Game.game_window = game_window
+      Game.scene       = scene
+
+      expect(scene).to receive(:update)
+      game_window.update
+    end
+  end
+
+  describe ".draw" do
+    it "draws the scene" do
+      Game.game_window = game_window
+      Game.scene       = scene
+
+      expect(scene).to receive(:draw)
+      game_window.draw
     end
   end
 end

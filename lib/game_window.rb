@@ -8,9 +8,11 @@ class GameWindow < Gosu::Window
   end
 
   def update
+    Game.scene.update
   end
 
   def draw
+    Game.scene.draw
   end
 
   def button_down id

@@ -15,6 +15,10 @@ describe Game do
     it "has an input manager with a target" do
       expect(Game.input_manager.target).to be_an_instance_of GameWindow
     end
+
+    it "has a scene" do
+      expect(Game.scene).to be_an_instance_of Scene
+    end
   end
 
   describe "#start" do
