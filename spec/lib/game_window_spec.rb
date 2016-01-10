@@ -4,8 +4,8 @@ describe GameWindow do
   let(:game_window)   { GameWindow.new }
   let(:scene)         { Scene.new }
   let(:input_manager) { InputManager.new.tap { |im| im.target = game_window } }
-  let(:width)         { 800 }
-  let(:height)        { 600 }
+  let(:width)         { 1440 }
+  let(:height)        { 900 }
   let(:keys)          { { escape: Gosu::KbEscape } }
 
   describe ".new" do

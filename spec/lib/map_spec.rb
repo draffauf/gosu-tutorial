@@ -5,10 +5,17 @@ describe Map do
 
   describe "Map attributes" do
     it { expect(Map::TILE_SETS_PATH   ).to eq "graphics/tile_sets" }
-    it { expect(Map::DEFAULT_TILE_SET ).to eq "tile_set" }
+    it { expect(Map::DEFAULT_TILE_SET ).to eq "big_tiles" }
     it { expect(Map::EXTENSION        ).to eq ".png" }
     it { expect(Map::TILEABLE         ).to eq true }
-    it { expect(Map::DEFAULT_TILE_SIZE).to eq 32 }
+    it { expect(Map::DEFAULT_TILE_SIZE).to eq 100 }
+  end
+
+  describe ".new" do
+    it "generate tiles" do
+      Game.game_window = GameWindow.new
+      expect(map.tiles.size).to eq 50
+    end
   end
 
   describe ".tile_size" do
@@ -18,10 +25,4 @@ describe Map do
     end
   end
 
-  describe ".draw" do
-    it "draw the tiles" do
-      expect(map).to receive(:draw_tile).exactly(50).times
-      map.draw
-    end
-  end
 end
