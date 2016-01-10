@@ -1,9 +1,10 @@
 class Map
   TILE_SETS_PATH   = "graphics/tile_sets"
-  DEFAULT_TILE_SET = "tile_set"
+  DEFAULT_TILE_SET = "big_tiles"
   EXTENSION        = ".png"
   TILEABLE         = true
-  DEFAULT_TILE_SIZE= 32
+  DEFAULT_TILE_SIZE= 100
+  TILE_OFFSET_Y    = 16
 
   attr_reader :tile_size
 
@@ -17,14 +18,20 @@ class Map
   def draw
     z_index = 0
     tile = tiles[0]
+    is_first_row = true
+    map_offset_x = (1440 - columns * DEFAULT_TILE_SIZE) / 2
+    map_offset_y = (900  - rows * (DEFAULT_TILE_SIZE - TILE_OFFSET_Y)) / 2
 
-    columns.times do |x|
-      rows.times do |y|
-        draw_tile tile,
-                  x * tile_size,
-                  y * tile_size,
-                  z_index
+    rows.times do |y|
+      columns.times do |x|
+        x1 = map_offset_x + x * tile_size
+        y1 = map_offset_y + y * tile_size - (y * TILE_OFFSET_Y)
+        z1 = z_index
+
+        draw_tile tile, x1, y1, z1
       end
+
+      is_first_row = false
     end
   end
 
