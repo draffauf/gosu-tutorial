@@ -2,8 +2,10 @@ class Scene
   attr_reader :sprites
 
   def initialize
-    @map = Map.new
-    @sprites = [@map]
+    @sprites = [
+      TileMap.new,
+      ItemMap.new
+    ]
   end
 
   def update

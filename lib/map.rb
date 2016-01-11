@@ -1,16 +1,24 @@
 class Map
-  TILE_SETS_PATH   = "graphics/tile_sets"
-  DEFAULT_TILE_SET = "big_tiles"
-  EXTENSION        = ".png"
-  TILEABLE         = true
-  DEFAULT_TILE_SIZE= 100
-  TILE_OFFSET_Y    = 14
+  SCREEN_WIDTH  = 1440 #TODO MOVE
+  SCREEN_HEIGHT = 900  #TODO MOVE
+  TILE_OFFSET_Y = 14
 
-  attr_reader :tile_size, :tiles
+  attr_reader :tile_set,
+              :tile_size,
+              :tiles,
+              :map_offset_y,
+              :z_index,
+              :columns,
+              :rows
 
-  def initialize tile_size = DEFAULT_TILE_SIZE
-    @tile_size = tile_size
-    @tiles     = build_tiles
+  def initialize tile_set = TileSet.new,
+                 map_offset_y = 0,
+                 z_index = 0
+    @tile_set     = tile_set
+    @map_offset_y = map_offset_y
+    @z_index      = z_index
+    @columns      = 10
+    @rows         = 5
   end
 
   def update
@@ -22,76 +30,50 @@ class Map
 
 private
 
-  def build_tiles
-    return @tiles if @tiles
+  def tile_size
+    @tile_size ||= tile_set.tile_size
+  end
 
-    @tiles = []
-
-    rows.times do |y|
-      columns.times do |x|
-        @tiles << Tile.new({
-          sprite: tile_sprites[0],
-          x: map_offset_x + x * tile_size,
-          y: map_offset_y + y * tile_size - (y * TILE_OFFSET_Y),
-          z: z_index
-        })
+  def tiles
+    @tiles ||= [].tap do |the_tiles|
+      rows.times do |row|
+        columns.times do |column|
+          the_tiles << Tile.new({
+            sprite: value,
+            x:      offset_x + column * tile_size,
+            y:      offset_y + row * tile_size - (row * TILE_OFFSET_Y),
+            z:      z_index
+          })
+        end
       end
     end
-
-    @tiles
   end
 
-  def map_offset_x
-    @map_offset_x ||= (1440 - columns * DEFAULT_TILE_SIZE) / 2
+  def value
+    # We can do something smarter here when we have more tiles,
+    # Like construct an actual level map (2D array?) with real tile values
+    tile_set.tiles[0]
   end
 
-  def map_offset_y
-    @map_offset_y ||= (900 - rows * (DEFAULT_TILE_SIZE - TILE_OFFSET_Y)) / 2
+  def offset_x
+    @offset_x ||= (SCREEN_WIDTH - columns * tile_size) / 2
   end
 
-  def z_index
-    0
+  def offset_y
+    @offset_y ||= (SCREEN_HEIGHT - rows * (tile_size - TILE_OFFSET_Y)) / 2 + map_offset_y
+  end
+end
+
+class TileMap < Map
+end
+
+class ItemMap < Map
+  def initialize
+    super TileSet.new("item"), -10
   end
 
-  def columns
-    columns = 10
+  def value
+    index = rand(2)
+    tile_set.tiles[index]
   end
-
-  def rows
-    rows = 5
-  end
-
-  def tile_sprites
-    @tile_sprites ||= Gosu::Image.load_tiles Game.game_window,
-                                             file_path,
-                                             DEFAULT_TILE_SIZE,
-                                             DEFAULT_TILE_SIZE,
-                                             TILEABLE
-  end
-
-  def file_path
-    @file_path ||= [
-        TILE_SETS_PATH,
-        DEFAULT_TILE_SET
-      ].join('/') << EXTENSION
-  end
-
-  class Tile
-    def initialize sprite:, x: 0, y: 0, z: 0
-      @sprite = sprite
-      @x = x
-      @y = y
-      @z = z
-    end
-
-    def draw
-      sprite.draw x, y, z
-    end
-
-  private
-
-    attr_reader :sprite, :x, :y, :z
-
-  end
-
 end
