@@ -3,8 +3,7 @@ class Scene
 
   def initialize
     @sprites = [
-      TileMap.new,
-      ItemMap.new
+      Board.new
     ]
   end
 
