@@ -1,5 +1,4 @@
 class Board
-  DEFAULT_TILE_SIZE   = 100
   SCREEN_WIDTH        = 1440
   SCREEN_HEIGHT       = 900
   BACKGROUND_OFFSET_Y = -14
@@ -11,7 +10,7 @@ class Board
 
   def initialize rows = 5,
                  columns = 9,
-                 tile_size = DEFAULT_TILE_SIZE
+                 tile_size = 100
     @rows      = rows
     @columns   = columns
     @tile_size = tile_size
