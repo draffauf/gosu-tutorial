@@ -7,10 +7,6 @@ describe Board do
   describe "Board attributes" do
     it { expect(Board::SCREEN_WIDTH       ).to eq 1440                 } #TODO MOVE
     it { expect(Board::SCREEN_HEIGHT      ).to eq 900                  } #TODO MOVE
-    it { expect(Board::TILE_SETS_PATH     ).to eq "graphics/tile_sets" }
-    it { expect(Board::DEFAULT_TILE_SET   ).to eq "big_tiles"          }
-    it { expect(Board::EXTENSION          ).to eq ".png"               }
-    it { expect(Board::TILEABLE           ).to eq true                 }
     it { expect(Board::DEFAULT_TILE_SIZE  ).to eq 100                  }
     it { expect(Board::BACKGROUND_OFFSET_Y).to eq -14                  }
   end
