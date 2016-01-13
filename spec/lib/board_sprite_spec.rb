@@ -1,8 +1,6 @@
 require_relative '../spec_helper'
 
 describe BoardSprite do
-  it { expect(BoardSprite::Z_INDEX).to eq 0 }
-
   let(:board_sprite) { BoardSprite.new 5, 10 }
 
   describe ".new" do

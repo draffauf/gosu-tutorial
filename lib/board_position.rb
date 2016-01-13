@@ -11,11 +11,16 @@ class BoardPosition
 
   def draw
     background.draw
+    item.draw
   end
 
   private
 
+  def item
+    @item ||= BoardItem.new x, y
+  end
+
   def background
-    @background ||= BoardSprite.new x, y
+    @background ||= BoardMap.new x, y
   end
 end

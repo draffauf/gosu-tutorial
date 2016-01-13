@@ -20,7 +20,7 @@ describe Board do
   describe ".draw" do
     it "calls draw on the BoardSprite" do
       draw_count = 0
-      BoardPosition.any_instance.stub(:draw) { draw_count += 1 }
+      allow_any_instance_of(BoardPosition).to receive(:draw) { draw_count += 1 }
       board.draw
       expect(draw_count).to eq 45
     end

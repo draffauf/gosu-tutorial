@@ -1,6 +1,6 @@
 class TileSet
   EXTENSION      = "png"
-  TILE_SETS_PATH = "graphics/tile_sets"
+  TILE_SETS_PATH = "graphics/sprite_sheets"
   TILE_SET       = "map"
   TILE_SIZE      = 100 # We're assuming square tiles for now
   TILEABLE       = true
