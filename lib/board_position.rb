@@ -6,6 +6,9 @@ class BoardPosition
     @y = y
   end
 
+  def update
+  end
+
   def draw
     background.draw
   end

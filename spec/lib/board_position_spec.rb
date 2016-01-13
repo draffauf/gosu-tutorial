@@ -12,5 +12,9 @@ describe BoardPosition do
   end
 
   describe ".draw" do
+    it "calls draw on the BoardSprite" do
+      expect_any_instance_of(BoardSprite).to receive(:draw)
+      board_position.draw
+    end
   end
 end

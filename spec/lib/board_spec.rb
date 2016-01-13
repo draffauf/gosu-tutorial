@@ -16,4 +16,13 @@ describe Board do
     it { expect(board.columns   ).to eq 9   }
     it { expect(board.tile_size ).to eq 100 }
   end
+
+  describe ".draw" do
+    it "calls draw on the BoardSprite" do
+      draw_count = 0
+      BoardPosition.any_instance.stub(:draw) { draw_count += 1 }
+      board.draw
+      expect(draw_count).to eq 45
+    end
+  end
 end
