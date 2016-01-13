@@ -19,43 +19,58 @@ class Board
     @rows      = rows
     @columns   = columns
     @tile_size = tile_size
-    @tiles     = build_tiles
   end
 
   def update
   end
 
   def draw
-    tiles.each { |tile| tile.draw }
+    positions.each do |row|
+      row.each do |position|
+        position.draw
+      end
+    end
   end
 
 private
 
-  def build_tiles
-    return @tiles if @tiles
+  def positions
+    @positions ||= [].tap do |board_positions|
+      rows.times do |row|
+        position_row = []
 
-    @tiles = []
+        columns.times do |column|
+          position_row << Tile.new({
+            sprite: sprite,
+            x:      map_offset_x + column * position_width,
+            y:      map_offset_y + row    * position_height,
+            z:      z_index
+          })
+        end
 
-    rows.times do |y|
-      columns.times do |x|
-        @tiles << Tile.new({
-          sprite: tile_sprites[0],
-          x: map_offset_x + x * tile_size,
-          y: map_offset_y + y * (tile_size + BACKGROUND_OFFSET_Y),
-          z: z_index
-        })
+        board_positions << position_row
       end
     end
+  end
 
-    @tiles
+  def sprite
+    tile_sprites[0]
+  end
+
+  def position_width
+    tile_size
+  end
+
+  def position_height
+    tile_size + BACKGROUND_OFFSET_Y
   end
 
   def map_offset_x
-    @map_offset_x ||= (1440 - columns * DEFAULT_TILE_SIZE) / 2
+    @map_offset_x ||= (1440 - columns * position_width) / 2
   end
 
   def map_offset_y
-    @map_offset_y ||= (900 - rows * (DEFAULT_TILE_SIZE + BACKGROUND_OFFSET_Y)) / 2
+    @map_offset_y ||= (900 - rows * position_height) / 2
   end
 
   def z_index
