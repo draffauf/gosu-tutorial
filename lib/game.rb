@@ -9,8 +9,7 @@ class Game
     @game_window   = GameWindow.new
     @input_manager = InputManager.new
     @scene         = Scene.new
-
-    input_manager.target = game_window
+    @input_manager.target = game_window
   end
 
   def self.start

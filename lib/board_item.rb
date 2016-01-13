@@ -6,5 +6,5 @@ class BoardItem < BoardSprite
   def z;            1        end
   def sprite_sheet; "items"  end
   def value;        0        end
-  def offset_y;     -9       end
+  def offset_y;     -10      end
 end

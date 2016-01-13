@@ -2,8 +2,9 @@ class Scene
   attr_reader :sprites
 
   def initialize
-    @board = Board.new
-    @sprites = [@board]
+    @board   = Board.new
+    @player  = Player.new
+    @sprites = [@board, @player]
   end
 
   def update
@@ -13,4 +14,8 @@ class Scene
   def draw
     sprites.each{ |sprite| sprite.draw }
   end
+
+  private
+
+  attr_reader :board, :player
 end
