@@ -11,8 +11,8 @@ class Player
     @max_health = 3
     @experience = 0
     @next_level = 3
-    @x = 1
-    @y = 3
+    @x = 0
+    @y = 2
   end
 
   def update

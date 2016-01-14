@@ -4,6 +4,7 @@ class BoardPosition
   def initialize x, y
     @x = x
     @y = y
+    @is_open = true
   end
 
   def update
@@ -11,7 +12,15 @@ class BoardPosition
 
   def draw
     background.draw
-    item.draw
+    item.draw if open?
+  end
+
+  def open?
+    @is_open
+  end
+
+  def occupy
+    @is_open = false
   end
 
   private

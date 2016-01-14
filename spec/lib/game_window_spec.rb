@@ -25,10 +25,24 @@ describe GameWindow do
   describe ".button_down" do
     it "closes the window when the button pressed is Escape" do
       Game.game_window   = game_window
+      Game.scene         = scene
       Game.input_manager = input_manager
 
       expect(game_window).to receive(:close)
       game_window.button_down keys[:escape]
+    end
+  end
+
+  describe ".receive_input" do
+    it "closes the window when escape is received" do
+      Game.game_window   = game_window
+      Game.scene         = scene
+      Game.input_manager = input_manager
+
+      input = keys[:escape]
+      expect(game_window).to receive(:close)
+      expect(Game.scene ).to receive(:receive_input).with(input)
+      game_window.receive_input input
     end
   end
 

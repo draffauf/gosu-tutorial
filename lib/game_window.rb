@@ -21,5 +21,6 @@ class GameWindow < Gosu::Window
 
   def receive_input input
     close if input == Gosu::KbEscape
+    Game.scene.receive_input input
   end
 end

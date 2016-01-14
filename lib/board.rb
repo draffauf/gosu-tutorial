@@ -27,7 +27,20 @@ class Board
     end
   end
 
+  def position y, x
+    if within_bounds? y, x
+      positions[y][x]
+    else
+      NullBoardPosition.new
+    end
+  end
+
 private
+
+  def within_bounds? y, x
+    y.between?(0, rows    - 1) &&
+    x.between?(0, columns - 1)
+  end
 
   def positions
     @positions ||= [].tap do |board_positions|
