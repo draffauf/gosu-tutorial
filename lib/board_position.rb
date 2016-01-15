@@ -19,8 +19,9 @@ class BoardPosition
     @is_open
   end
 
-  def occupy
+  def occupy player
     @is_open = false
+    player.health += 1
   end
 
   private

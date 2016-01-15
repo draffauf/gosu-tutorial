@@ -1,10 +1,13 @@
 require_relative 'board_sprite'
 
 class BoardItem < BoardSprite
-  private
+  def initialize x, y
+    super x, y
 
-  def z;            1        end
-  def sprite_sheet; "items"  end
-  def value;        0        end
-  def offset_y;     -10      end
+    @z            = 1
+    @sprite_sheet = "items"
+    @value        = 0
+    @offset_y     = -10
+    @width        = 100
+  end
 end

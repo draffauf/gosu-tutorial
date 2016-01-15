@@ -1,13 +1,13 @@
-require_relative 'board_sprite'
+class Heart < BoardSprite
+  attr_writer :value
 
-class BoardMap < BoardSprite
   def initialize x, y
     super x, y
 
     @z            = 0
-    @sprite_sheet = "map"
+    @sprite_sheet = "hearts"
     @value        = 0
     @offset_y     = 0
-    @width        = 100
+    @width        = 50
   end
 end

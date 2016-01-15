@@ -35,8 +35,10 @@ describe BoardPosition do
   end
 
   describe ".occupy" do
+    let(:player) { Player.new }
+
     it "makes the position no longer open" do
-      board_position.occupy
+      board_position.occupy player
       expect(board_position).to_not be_open
     end
   end

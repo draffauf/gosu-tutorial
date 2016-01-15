@@ -4,9 +4,10 @@ class Scene
               :sprites
 
   def initialize
-    @board   = Board.new
-    @player  = Player.new
-    @sprites = [@board, @player]
+    @board       = Board.new
+    @player      = Player.new
+    @heart_meter = HeartMeter.new @player
+    @sprites     = [@board, @player, @heart_meter]
 
     move_player player.y, player.x
   end
@@ -34,7 +35,7 @@ class Scene
     if position.open?
       player.y = y
       player.x = x
-      position.occupy
+      position.occupy(player)
     end
   end
 

@@ -1,21 +1,31 @@
 class BoardSprite
-  attr_reader :x, :y
+  attr_reader :x, :y, :z,
+              :sprite_sheet,
+              :value,
+              :offset_y,
+              :width
 
-  def initialize x, y
+  def initialize x, y, z = 0
     @x = x
     @y = y
+    @z = z
+
+    @sprite_sheet = "map"
+    @value        = 0
+    @offset_y     = 0
+    @width        = 100
   end
 
   def draw
     sprite.draw
   end
 
-  private
+  def value= _value
+    @value = _value
+    @tile  = nil
+  end
 
-  def z;            0     end
-  def sprite_sheet; "map" end
-  def value;        0     end
-  def offset_y;     0     end
+  private
 
   def sprite
     @sprite ||= Tile.new({
@@ -31,6 +41,7 @@ class BoardSprite
   end
 
   def tile_set
-    @tile_set ||= TileSet.new sprite_sheet
+    @tile_set ||= TileSet.new sprite_sheet, width
   end
+
 end
