@@ -21,10 +21,10 @@ class Scene
   end
 
   def receive_input input
-    move_player(player.y, player.x - 1) if input == Gosu::KbLeft
-    move_player(player.y, player.x + 1) if input == Gosu::KbRight
-    move_player(player.y - 1, player.x) if input == Gosu::KbUp
-    move_player(player.y + 1, player.x) if input == Gosu::KbDown
+    move_player(player.y, player.x - 1) if [Gosu::KbLeft,  Gosu::KbE].include?(input)
+    move_player(player.y, player.x + 1) if [Gosu::KbRight, Gosu::KbF].include?(input)
+    move_player(player.y - 1, player.x) if [Gosu::KbUp,    Gosu::KbC].include?(input)
+    move_player(player.y + 1, player.x) if [Gosu::KbDown,  Gosu::KbD].include?(input)
   end
 
   private
