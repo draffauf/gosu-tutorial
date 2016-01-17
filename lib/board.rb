@@ -48,13 +48,35 @@ private
         position_row = []
 
         columns.times do |column|
-          position_row << BoardPosition.new(
-            offset_x + column * position_width,
-            offset_y + row    * position_height
+          x = offset_x + column * position_width
+          y = offset_y + row    * position_height
+
+          _position = BoardPosition.new(
+            item(x, y, row, column),
+            BoardMap.new(x, y)
           )
+
+          position_row << _position
         end
 
         board_positions << position_row
+      end
+    end
+  end
+
+  def item x, y, row, column
+    if row == 2 && column == 0
+      BoardItemNull.new x, y
+    elsif row == 2 && column == 8
+      BoardItemExit.new x, y
+    else
+      index = rand(100)
+      if index > 50
+        BoardItemHealth.new x, y
+      elsif index > 40
+        BoardItemStrongEnemy.new x, y
+      else
+        BoardItemEnemy.new x, y
       end
     end
   end

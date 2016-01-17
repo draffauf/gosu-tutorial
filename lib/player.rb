@@ -24,4 +24,8 @@ class Player
   def health= value
     @health = value if value.between?(0, max_health)
   end
+
+  def dead?
+    health == 0
+  end
 end

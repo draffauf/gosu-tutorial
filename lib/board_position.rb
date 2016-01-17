@@ -1,9 +1,9 @@
 class BoardPosition
-  attr_reader :x, :y
+  attr_reader :item, :background
 
-  def initialize x, y
-    @x = x
-    @y = y
+  def initialize item, background
+    @item = item
+    @background = background
     @is_open = true
   end
 
@@ -21,16 +21,7 @@ class BoardPosition
 
   def occupy player
     @is_open = false
-    player.health += 1
-  end
-
-  private
-
-  def item
-    @item ||= BoardItem.new x, y
-  end
-
-  def background
-    @background ||= BoardMap.new x, y
+    background.value = 1
+    item.interact(player)
   end
 end

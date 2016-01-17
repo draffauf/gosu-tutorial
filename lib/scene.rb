@@ -21,6 +21,8 @@ class Scene
   end
 
   def receive_input input
+    return if player.dead?
+
     move_player(player.y, player.x - 1) if [Gosu::KbLeft,  Gosu::KbE].include?(input)
     move_player(player.y, player.x + 1) if [Gosu::KbRight, Gosu::KbF].include?(input)
     move_player(player.y - 1, player.x) if [Gosu::KbUp,    Gosu::KbC].include?(input)
