@@ -9,7 +9,7 @@ class Scene
     @heart_meter = HeartMeter.new @player
     @sprites     = [@board, @player, @heart_meter]
 
-    move_player player.y, player.x
+    move_player player.board_y, player.board_x
   end
 
   def update
@@ -23,10 +23,10 @@ class Scene
   def receive_input input
     return if player.dead?
 
-    move_player(player.y, player.x - 1) if [Gosu::KbLeft,  Gosu::KbE].include?(input)
-    move_player(player.y, player.x + 1) if [Gosu::KbRight, Gosu::KbF].include?(input)
-    move_player(player.y - 1, player.x) if [Gosu::KbUp,    Gosu::KbC].include?(input)
-    move_player(player.y + 1, player.x) if [Gosu::KbDown,  Gosu::KbD].include?(input)
+    move_player(player.board_y, player.board_x - 1) if [Gosu::KbLeft,  Gosu::KbE].include?(input)
+    move_player(player.board_y, player.board_x + 1) if [Gosu::KbRight, Gosu::KbF].include?(input)
+    move_player(player.board_y - 1, player.board_x) if [Gosu::KbUp,    Gosu::KbC].include?(input)
+    move_player(player.board_y + 1, player.board_x) if [Gosu::KbDown,  Gosu::KbD].include?(input)
   end
 
   private
@@ -35,9 +35,11 @@ class Scene
     position = board.position(y, x)
 
     if position.open?
-      player.y = y
-      player.x = x
+      player.board_y = y
+      player.board_x = x
       position.occupy(player)
+      player.position position.background.y,
+                      position.background.x
     end
   end
 

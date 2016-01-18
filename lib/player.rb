@@ -1,24 +1,31 @@
-class Player
+class Player < BoardSprite
   attr_reader :health,
               :max_health,
               :experience,
               :next_level
 
-  attr_accessor :x, :y
+  attr_accessor :board_x,
+                :board_y,
+                :x,
+                :y
 
-  def initialize
+  def initialize x = 0, y = 0
+    super x, y
+
     @health     = 3
     @max_health = 5
     @experience = 0
     @next_level = 3
-    @x = 0
-    @y = 2
+    @board_x = 0
+    @board_y = 2
+
+    @z            = 2
+    @sprite_sheet = "player"
+    @offset_y     = 0
+    @width        = 100
   end
 
   def update
-  end
-
-  def draw
   end
 
   def health= value
@@ -27,5 +34,11 @@ class Player
 
   def dead?
     health == 0
+  end
+
+  def position y, x
+    @y = y - 20
+    @x = x
+    @sprite = nil
   end
 end
