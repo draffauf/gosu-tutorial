@@ -9,6 +9,10 @@ class BoardItem < BoardSprite
     @offset_y     = -10
     @width        = 100
   end
+
+  def exit?
+    false
+  end
 end
 
 class BoardItemHealth < BoardItem
@@ -51,6 +55,10 @@ class BoardItemExit < BoardItem
   end
 
   def interact player
+  end
+
+  def exit?
+    true
   end
 end
 

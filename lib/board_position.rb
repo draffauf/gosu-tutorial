@@ -19,6 +19,10 @@ class BoardPosition
     @is_open
   end
 
+  def exit?
+    item.exit?
+  end
+
   def occupy player
     @is_open = false
     background.value = 1
