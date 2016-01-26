@@ -9,7 +9,7 @@ class Scene
     @heart_meter = HeartMeter.new @player
     @sprites     = [@board, @player, @heart_meter]
 
-    move_player player.y, player.x
+    move_player Position.new
   end
 
   def update
@@ -21,21 +21,32 @@ class Scene
   end
 
   def receive_input input
-    move_player(player.y, player.x - 1) if [Gosu::KbLeft,  Gosu::KbE].include?(input)
-    move_player(player.y, player.x + 1) if [Gosu::KbRight, Gosu::KbF].include?(input)
-    move_player(player.y - 1, player.x) if [Gosu::KbUp,    Gosu::KbC].include?(input)
-    move_player(player.y + 1, player.x) if [Gosu::KbDown,  Gosu::KbD].include?(input)
+    position_delta =
+      if    [Gosu::KbLeft,  Gosu::KbE].include?(input)
+        Position.new(y: 0, x: -1)
+      elsif [Gosu::KbRight, Gosu::KbF].include?(input)
+        Position.new(y: 0, x: 1)
+      elsif [Gosu::KbUp,    Gosu::KbC].include?(input)
+        Position.new(y: -1, x: 0)
+      elsif [Gosu::KbDown,  Gosu::KbD].include?(input)
+        Position.new(y: 1, x: 0)
+      else
+        Position.new(y: 0, x: 0)
+      end
+
+    move_player position_delta
   end
 
   private
 
-  def move_player y, x
-    position = board.position(y, x)
+  def move_player position
+    board_position = board.position(
+      player.position + position
+    )
 
-    if position.open?
-      player.y = y
-      player.x = x
-      position.occupy(player)
+    if board_position.open?
+      player.position = player.position + position
+      board_position.occupy(player)
     end
   end
 

@@ -31,18 +31,18 @@ describe Board do
 
     context "within bounds" do
       it "returns a BoardPosition" do
-        expect(board.position(0,0)).to be_instance_of(BoardPosition)
-        expect(board.position(2,5)).to be_instance_of(BoardPosition)
-        expect(board.position(4,8)).to be_instance_of(BoardPosition)
+        expect(board.position(Position.new)).to be_instance_of(BoardPosition)
+        expect(board.position(Position.new(y: 2, x: 5))).to be_instance_of(BoardPosition)
+        expect(board.position(Position.new(y: 4, x: 8))).to be_instance_of(BoardPosition)
       end
     end
 
     context "out of bounds" do
       it "returns a NullBoardPosition" do
-        expect(board.position(-1, 0)).to be_instance_of(NullBoardPosition)
-        expect(board.position( 5, 0)).to be_instance_of(NullBoardPosition)
-        expect(board.position(0, -1)).to be_instance_of(NullBoardPosition)
-        expect(board.position(0,  9)).to be_instance_of(NullBoardPosition)
+        expect(board.position(Position.new(y: -1, x: 0 ))).to be_instance_of(NullBoardPosition)
+        expect(board.position(Position.new(y:  5, x: 0 ))).to be_instance_of(NullBoardPosition)
+        expect(board.position(Position.new(y:  0, x: -1))).to be_instance_of(NullBoardPosition)
+        expect(board.position(Position.new(y:  0, x: 9 ))).to be_instance_of(NullBoardPosition)
       end
     end
   end

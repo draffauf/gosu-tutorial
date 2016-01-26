@@ -27,9 +27,9 @@ class Board
     end
   end
 
-  def position y, x
-    if within_bounds? y, x
-      positions[y][x]
+  def position _position
+    if within_bounds? _position.y, _position.x
+      positions[_position.y][_position.x]
     else
       NullBoardPosition.new
     end

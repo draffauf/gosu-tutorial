@@ -19,7 +19,7 @@ describe Scene do
     end
 
     it "calls move_player" do
-      expect_any_instance_of(Scene).to receive(:move_player).with(2, 0)
+      expect_any_instance_of(Scene).to receive(:move_player)
       Scene.new
     end
   end
