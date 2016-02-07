@@ -4,7 +4,7 @@ describe InputManager do
   let(:keys)          { { escape: Gosu::KbEscape } }
   let(:key_escape)    { keys[:escape] }
   let(:game_window)   { GameWindow.new }
-  let(:input_manager) { im = InputManager.new.tap { |im| im.target = game_window } }
+  let(:input_manager) { InputManager.new.tap { |im| im.target = game_window } }
 
   describe ".new" do
     it "creates an instance of the InputManager" do

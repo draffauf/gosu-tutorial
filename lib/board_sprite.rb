@@ -22,6 +22,7 @@ class BoardSprite
 
   def value= _value
     @value = _value
+    @sprite= nil
     @tile  = nil
   end
 
