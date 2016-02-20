@@ -1,4 +1,4 @@
-require_relative 'board_sprite'
+require 'board_sprite'
 
 class BoardMap < BoardSprite
   def initialize x, y

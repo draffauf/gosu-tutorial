@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe InputManager do
   let(:keys)          { { escape: Gosu::KbEscape } }

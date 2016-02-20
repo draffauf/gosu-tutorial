@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe BoardMap do
   let(:board_map) { BoardMap.new 5, 10 }

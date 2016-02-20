@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe BoardPosition do
   let(:board_position) { BoardPosition.new 200, 100 }

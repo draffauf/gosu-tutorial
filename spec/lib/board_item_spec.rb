@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe BoardItem do
   let(:board_item) { BoardItem.new 5, 10 }

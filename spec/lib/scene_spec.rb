@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe Scene do
   let(:game_window) { GameWindow.new }
