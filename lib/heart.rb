@@ -1,3 +1,5 @@
+require 'board_sprite'
+
 class Heart < BoardSprite
   attr_writer :value
 
