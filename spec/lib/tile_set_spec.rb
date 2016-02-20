@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe TileSet do
   it { expect(TileSet::EXTENSION     ).to eq "png"                    }

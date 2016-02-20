@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 describe NullBoardPosition do
   let(:null_board_position) { NullBoardPosition.new }
