@@ -16,7 +16,7 @@ describe BoardSprite do
   describe ".draw" do
     it "calls draw on the sprites" do
       tile = double("Tile")
-      board_sprite.stub(sprite: tile)
+      allow(board_sprite).to receive(:sprite).and_return(tile)
       expect(tile).to receive(:draw)
       board_sprite.draw
     end

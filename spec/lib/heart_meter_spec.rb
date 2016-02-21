@@ -6,8 +6,8 @@ describe HeartMeter do
 
   describe ".update" do
     it "updates the heart meter with new values from the player" do
-      player.stub(max_health: player.max_health + 1)
-      player.stub(health:     player.health     + 1)
+      allow(player).to receive(:max_health).and_return(player.max_health + 1)
+      allow(player).to receive(:health    ).and_return(player.health     + 1)
       heart_meter.update
       expect(heart_meter.send(:max_health)).to eq 6
       expect(heart_meter.send(:health)    ).to eq 4
@@ -17,7 +17,7 @@ describe HeartMeter do
   describe ".draw" do
     it "renders the hearts in the meter" do
       heart = double("Heart")
-      heart_meter.stub(hearts: [heart])
+      allow(heart_meter).to receive(:hearts).and_return([heart])
       expect(heart).to receive(:draw)
       heart_meter.draw
     end

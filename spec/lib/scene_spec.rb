@@ -34,7 +34,7 @@ describe Scene do
   describe ".draw" do
     it "draw each sprite" do
       sprite = double("Player")
-      scene.stub(sprites: [sprite])
+      allow(scene).to receive(:sprites).and_return([sprite])
       expect(scene.sprites.first).to receive(:draw)
       scene.draw
     end

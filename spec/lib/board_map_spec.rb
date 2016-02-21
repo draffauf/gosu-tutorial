@@ -16,7 +16,7 @@ describe BoardMap do
   describe ".draw" do
     it "calls draw on the sprites" do
       tile = double("Tile")
-      board_map.stub(sprite: tile)
+      allow(board_map).to receive(:sprite).and_return(tile)
       expect(tile).to receive(:draw)
       board_map.draw
     end
