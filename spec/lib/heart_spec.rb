@@ -16,7 +16,7 @@ describe Heart do
   describe ".draw" do
     it "calls draw on the sprites" do
       tile = double("Tile")
-      heart.stub(sprite: tile)
+      allow(heart).to receive(:sprite).and_return(tile)
       expect(tile).to receive(:draw)
       heart.draw
     end

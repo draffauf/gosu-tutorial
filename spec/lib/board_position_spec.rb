@@ -16,7 +16,7 @@ describe BoardPosition do
     context "is open" do
       it "calls draw on the BoardSprite" do
         draw_count = 0
-        board_position.stub(:open?) { true }
+        allow(board_position).to receive(:open?).and_return(true)
         allow_any_instance_of(BoardSprite).to receive(:draw) { draw_count += 1 }
         board_position.draw
         expect(draw_count).to eq 2
@@ -26,7 +26,7 @@ describe BoardPosition do
     context "is not open" do
       it "calls draw on the BoardSprite" do
         draw_count = 0
-        board_position.stub(:open?) { false }
+        allow(board_position).to receive(:open?).and_return(false)
         allow_any_instance_of(BoardSprite).to receive(:draw) { draw_count += 1 }
         board_position.draw
         expect(draw_count).to eq 1

@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'gosu'
-gem 'rspec'
+
+group :development do
+  gem 'rspec'
+  gem 'guard-rspec', require: false
+  gem 'pry'
+end
