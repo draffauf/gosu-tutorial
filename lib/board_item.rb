@@ -1,4 +1,4 @@
-require 'board_sprite'
+require_relative './board_sprite'
 
 class BoardItem < BoardSprite
   def initialize x, y

@@ -1,4 +1,4 @@
-require 'board_sprite'
+require_relative './board_sprite'
 
 class Heart < BoardSprite
   attr_writer :value
