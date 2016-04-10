@@ -14,20 +14,20 @@ describe BoardPosition do
 
   describe ".draw" do
     context "is open" do
-      it "calls draw on the BoardSprite" do
+      it "calls draw on the Sprite" do
         draw_count = 0
         allow(board_position).to receive(:open?).and_return(true)
-        allow_any_instance_of(BoardSprite).to receive(:draw) { draw_count += 1 }
+        allow_any_instance_of(Sprite).to receive(:draw) { draw_count += 1 }
         board_position.draw
         expect(draw_count).to eq 2
       end
     end
 
     context "is not open" do
-      it "calls draw on the BoardSprite" do
+      it "calls draw on the Sprite" do
         draw_count = 0
         allow(board_position).to receive(:open?).and_return(false)
-        allow_any_instance_of(BoardSprite).to receive(:draw) { draw_count += 1 }
+        allow_any_instance_of(Sprite).to receive(:draw) { draw_count += 1 }
         board_position.draw
         expect(draw_count).to eq 1
       end

@@ -1,6 +1,6 @@
-require_relative './board_sprite'
+require_relative './sprite'
 
-class Heart < BoardSprite
+class Heart < Sprite
   attr_writer :value
 
   def initialize x, y

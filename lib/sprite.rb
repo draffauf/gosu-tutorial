@@ -1,4 +1,4 @@
-class BoardSprite
+class Sprite
   attr_reader :x, :y, :z,
               :sprite_sheet,
               :value,

@@ -1,6 +1,6 @@
-require_relative './board_sprite'
+require_relative './sprite'
 
-class BoardItem < BoardSprite
+class BoardItem < Sprite
   def initialize x, y
     super x, y
 
