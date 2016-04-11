@@ -9,7 +9,6 @@ describe Heart do
     it { expect(heart.sprite_sheet).to eq "hearts" }
     it { expect(heart.value       ).to eq 0        }
     it { expect(heart.width       ).to eq 50       }
-    it { expect(heart.offset_y    ).to eq 0        }
   end
 
   describe ".draw" do

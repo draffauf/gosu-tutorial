@@ -7,7 +7,6 @@ describe BoardMap do
     it { expect(board_map.sprite_sheet).to eq "map" }
     it { expect(board_map.value       ).to eq 0     }
     it { expect(board_map.width       ).to eq 100   }
-    it { expect(board_map.offset_y    ).to eq 0     }
   end
 
   describe ".draw" do

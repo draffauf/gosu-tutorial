@@ -10,7 +10,6 @@ class Sprite
 
     @sprite_sheet = "map"
     @value        = 0
-    @offset_y     = 0
     @width        = 100
   end
 
@@ -29,7 +28,7 @@ class Sprite
   def sprite
     @sprite ||= Tile.new({
       tile: tile,
-      position: @position + Position.new(y: offset_y)
+      position: position
     })
   end
 

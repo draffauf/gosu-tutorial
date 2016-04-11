@@ -26,7 +26,7 @@ class BoardPosition
   private
 
   def item
-    @item ||= BoardItem.new position
+    @item ||= BoardItem.new(position + Position.new(y: -10))
   end
 
   def background

@@ -9,7 +9,6 @@ describe BoardItem do
     it { expect(board_item.sprite_sheet).to eq "items"  }
     it { expect(board_item.value       ).to eq 0        }
     it { expect(board_item.width       ).to eq 100      }
-    it { expect(board_item.offset_y    ).to eq -10      }
   end
 
   describe ".draw" do

@@ -9,7 +9,6 @@ describe Sprite do
     it { expect(sprite.sprite_sheet).to eq "map"    }
     it { expect(sprite.value       ).to eq 0        }
     it { expect(sprite.width       ).to eq 100      }
-    it { expect(sprite.offset_y    ).to eq 0        }
   end
 
   describe ".draw" do
