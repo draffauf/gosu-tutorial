@@ -1,10 +1,11 @@
 require_relative './sprite'
 
 class BoardMap < Sprite
-  def initialize x, y
-    super x, y
+  def initialize position = Position.new
+    @position = position
+    @position.z = 0
+    super position
 
-    @z            = 0
     @sprite_sheet = "map"
     @value        = 0
     @offset_y     = 0

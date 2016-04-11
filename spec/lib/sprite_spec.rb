@@ -1,16 +1,15 @@
 require 'spec_helper'
 
 describe Sprite do
-  let(:sprite) { Sprite.new 5, 10 }
+  let(:position) { Position.new(x: 5, y: 10, z: 0) }
+  let(:sprite)   { Sprite.new position }
 
   describe ".new" do
-    it { expect(sprite.x           ).to eq 5     }
-    it { expect(sprite.y           ).to eq 10    }
-    it { expect(sprite.z           ).to eq 0     }
-    it { expect(sprite.sprite_sheet).to eq "map" }
-    it { expect(sprite.value       ).to eq 0     }
-    it { expect(sprite.width       ).to eq 100   }
-    it { expect(sprite.offset_y    ).to eq 0     }
+    it { expect(sprite.position    ).to eq position }
+    it { expect(sprite.sprite_sheet).to eq "map"    }
+    it { expect(sprite.value       ).to eq 0        }
+    it { expect(sprite.width       ).to eq 100      }
+    it { expect(sprite.offset_y    ).to eq 0        }
   end
 
   describe ".draw" do

@@ -1,14 +1,12 @@
 class Sprite
-  attr_reader :x, :y, :z,
+  attr_reader :position,
               :sprite_sheet,
               :value,
               :offset_y,
               :width
 
-  def initialize x, y, z = 0
-    @x = x
-    @y = y
-    @z = z
+  def initialize position = Position.new(0, 0, 0)
+    @position = position
 
     @sprite_sheet = "map"
     @value        = 0
@@ -30,10 +28,8 @@ class Sprite
 
   def sprite
     @sprite ||= Tile.new({
-      sprite: tile,
-      x:      x,
-      y:      y + offset_y,
-      z:      z
+      tile: tile,
+      position: @position + Position.new(y: offset_y)
     })
   end
 
