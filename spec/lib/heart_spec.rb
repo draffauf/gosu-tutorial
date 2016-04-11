@@ -6,9 +6,6 @@ describe Heart do
 
   describe ".new" do
     it { expect(heart.position    ).to eq position }
-    it { expect(heart.sprite_sheet).to eq "hearts" }
-    it { expect(heart.value       ).to eq 0        }
-    it { expect(heart.width       ).to eq 50       }
   end
 
   describe ".draw" do
@@ -21,10 +18,11 @@ describe Heart do
   end
 
   describe ".value=" do
-    it "nullifies the tile" do
-      expect(heart.value).to eq 0
-      heart.value = 1
-      expect(heart.value).to eq 1
+    let(:tile) { 1 }
+
+    it "delegates to sprite" do
+      expect(heart.sprite).to receive(:value=).with(tile)
+      heart.value = tile
     end
   end
 end

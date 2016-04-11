@@ -6,9 +6,6 @@ describe BoardItem do
 
   describe ".new" do
     it { expect(board_item.position    ).to eq position }
-    it { expect(board_item.sprite_sheet).to eq "items"  }
-    it { expect(board_item.value       ).to eq 0        }
-    it { expect(board_item.width       ).to eq 100      }
   end
 
   describe ".draw" do
@@ -17,14 +14,6 @@ describe BoardItem do
       allow(board_item).to receive(:sprite).and_return(tile)
       expect(tile).to receive(:draw)
       board_item.draw
-    end
-  end
-
-  describe ".value=" do
-    it "nullifies the tile" do
-      expect(board_item.value).to eq 0
-      board_item.value = 1
-      expect(board_item.value).to eq 1
     end
   end
 end
