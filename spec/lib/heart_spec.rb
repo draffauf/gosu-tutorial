@@ -1,12 +1,11 @@
 require 'spec_helper'
 
 describe Heart do
-  let(:heart) { Heart.new 5, 10 }
+  let(:position) { Position.new(x: 5, y: 10, z: 0) }
+  let(:heart)    { Heart.new position }
 
   describe ".new" do
-    it { expect(heart.x           ).to eq 5        }
-    it { expect(heart.y           ).to eq 10       }
-    it { expect(heart.z           ).to eq 0        }
+    it { expect(heart.position    ).to eq position }
     it { expect(heart.sprite_sheet).to eq "hearts" }
     it { expect(heart.value       ).to eq 0        }
     it { expect(heart.width       ).to eq 50       }

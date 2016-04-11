@@ -1,10 +1,11 @@
 require_relative './sprite'
 
 class BoardItem < Sprite
-  def initialize x, y
-    super x, y
+  def initialize position = Position.new
+    @position = position
+    @position.z = 1
+    super position
 
-    @z            = 1
     @sprite_sheet = "items"
     @value        = 0
     @offset_y     = -10

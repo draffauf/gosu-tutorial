@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe BoardPosition do
-  let(:board_position) { BoardPosition.new 200, 100 }
+  let(:position)       { Position.new(x: 200, y: 100, z: 0) }
+  let(:board_position) { BoardPosition.new position }
 
   describe ".new" do
-    it { expect(board_position.x    ).to eq 200    }
-    it { expect(board_position.y    ).to eq 100    }
-    it { expect(board_position.open?).to be_truthy }
+    it { expect(board_position.position).to eq position }
+    it { expect(board_position.open?   ).to be_truthy   }
   end
 
   describe ".update" do

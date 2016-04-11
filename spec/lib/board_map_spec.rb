@@ -1,12 +1,9 @@
 require 'spec_helper'
 
 describe BoardMap do
-  let(:board_map) { BoardMap.new 5, 10 }
+  let(:board_map) { BoardMap.new Position.new(x: 5, y: 10, z: 0) }
 
   describe ".new" do
-    it { expect(board_map.x           ).to eq 5     }
-    it { expect(board_map.y           ).to eq 10    }
-    it { expect(board_map.z           ).to eq 0     }
     it { expect(board_map.sprite_sheet).to eq "map" }
     it { expect(board_map.value       ).to eq 0     }
     it { expect(board_map.width       ).to eq 100   }

@@ -36,7 +36,8 @@ class HeartMeter
     @hearts ||= [].tap do |hearts|
       count.times do |index|
         zero_based_index = index - 1
-        heart = Heart.new(zero_based_index * width, y)
+        position = Position.new(x: zero_based_index * width, y: y)
+        heart = Heart.new position
         heart.value = 1 if player.max_health > zero_based_index
         heart.value = 2 if player.health     > zero_based_index
         hearts << heart

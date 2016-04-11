@@ -1,16 +1,15 @@
 require 'spec_helper'
 
 describe BoardItem do
-  let(:board_item) { BoardItem.new 5, 10 }
+  let(:position)   { Position.new(x: 5, y: 10, z: 1) }
+  let(:board_item) { BoardItem.new position }
 
   describe ".new" do
-    it { expect(board_item.x           ).to eq 5       }
-    it { expect(board_item.y           ).to eq 10      }
-    it { expect(board_item.z           ).to eq 1       }
-    it { expect(board_item.sprite_sheet).to eq "items" }
-    it { expect(board_item.value       ).to eq 0       }
-    it { expect(board_item.width       ).to eq 100     }
-    it { expect(board_item.offset_y    ).to eq -10     }
+    it { expect(board_item.position    ).to eq position }
+    it { expect(board_item.sprite_sheet).to eq "items"  }
+    it { expect(board_item.value       ).to eq 0        }
+    it { expect(board_item.width       ).to eq 100      }
+    it { expect(board_item.offset_y    ).to eq -10      }
   end
 
   describe ".draw" do
