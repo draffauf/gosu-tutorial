@@ -5,12 +5,14 @@ class Sprite
               :offset_y,
               :width
 
-  def initialize position = Position.new(0, 0, 0)
-    @position = position
+  def initialize position = Position.new,
+                 sprite_sheet = "map",
+                 size = 100
+    @position     = position
+    @sprite_sheet = sprite_sheet
+    @width        = size
 
-    @sprite_sheet = "map"
-    @value        = 0
-    @width        = 100
+    @value = 0
   end
 
   def draw
@@ -26,10 +28,10 @@ class Sprite
   private
 
   def sprite
-    @sprite ||= Tile.new({
+    @sprite ||= Tile.new(
       tile: tile,
       position: position
-    })
+    )
   end
 
   def tile
@@ -37,7 +39,7 @@ class Sprite
   end
 
   def tile_set
-    @tile_set ||= TileSet.new sprite_sheet, width
+    @tile_set ||= TileSet.new(sprite_sheet, width)
   end
 
 end
