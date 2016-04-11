@@ -1,6 +1,7 @@
-require_relative './sprite'
-
 class Heart
+  SPRITE_SHEET = "hearts"
+  SPRITE_SIZE  = 50
+
   attr_reader :position
 
   def initialize position = Position.new
@@ -9,23 +10,12 @@ class Heart
   end
 
   def sprite
-    return @sprite if @sprite
-
-    sprite_sheet = "hearts"
-    sprite_size = 50
-    @sprite = Sprite.new @position,
-                         sprite_sheet,
-                         sprite_size
+    @sprite ||= Sprite.new @position,
+                           SPRITE_SHEET,
+                           SPRITE_SIZE
   end
 
-  #
-  # Delegate to sprite
-  #
-  def draw
-    sprite.draw
-  end
-
-  def value= value
-    sprite.value= value
-  end
+  # Delegate sprite questions to sprite
+  def draw; sprite.draw; end
+  def value=(value); sprite.value=(value); end
 end

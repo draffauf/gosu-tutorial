@@ -1,29 +1,20 @@
-require_relative './sprite'
+class BoardMap
+  SPRITE_SHEET = "map"
+  SPRITE_SIZE  = 100
 
-class BoardMap < Sprite
+
   def initialize position = Position.new
     @position = position
     @position.z = 0
   end
 
   def sprite
-    return @sprite if @sprite
-
-    sprite_sheet = "map"
-    sprite_size = 100
-    @sprite = Sprite.new @position,
-                         sprite_sheet,
-                         sprite_size
+    @sprite ||= Sprite.new @position,
+                           SPRITE_SHEET,
+                           SPRITE_SIZE
   end
 
-  #
-  # Delegate to sprite
-  #
-  def draw
-    sprite.draw
-  end
-
-  def value= value
-    sprite.value= value
-  end
+  # Delegate sprite questions to sprite
+  def draw; sprite.draw; end
+  def value=(value); sprite.value=(value); end
 end
