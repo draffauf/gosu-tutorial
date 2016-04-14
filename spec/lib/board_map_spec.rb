@@ -13,13 +13,4 @@ describe BoardMap do
 
   describe ".new" do
   end
-
-  describe ".draw" do
-    it "calls draw on the sprites" do
-      tile = double("Tile")
-      allow(board_map).to receive(:sprite).and_return(tile)
-      expect(tile).to receive(:draw)
-      board_map.draw
-    end
-  end
 end

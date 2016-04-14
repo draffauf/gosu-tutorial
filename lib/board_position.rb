@@ -20,6 +20,7 @@ class BoardPosition
 
   def occupy player
     @is_open = false
+    player.position = position
     player.health += 1
   end
 

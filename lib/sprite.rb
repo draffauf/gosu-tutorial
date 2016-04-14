@@ -1,9 +1,10 @@
 class Sprite
-  attr_reader :position,
-              :sprite_sheet,
-              :value,
-              :offset_y,
-              :width
+  attr_accessor :position
+
+  attr_reader   :sprite_sheet,
+                :value,
+                :offset_y,
+                :width
 
   def initialize position = Position.new,
                  sprite_sheet = "map",
@@ -21,6 +22,12 @@ class Sprite
 
   def value= _value
     @value = _value
+    @sprite= nil
+    @tile  = nil
+  end
+
+  def position= _position
+    @position = _position
     @sprite= nil
     @tile  = nil
   end

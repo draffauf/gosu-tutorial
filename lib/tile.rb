@@ -1,4 +1,6 @@
 class Tile
+  attr_accessor :position
+
   def initialize tile:, position: Position.new
     @tile = tile
     @position = position
@@ -12,5 +14,5 @@ class Tile
 
 private
 
-  attr_reader :tile, :position
+  attr_reader :tile
 end
