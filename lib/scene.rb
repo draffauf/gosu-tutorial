@@ -40,13 +40,12 @@ class Scene
   private
 
   def move_player position
-    board_position = board.position(
-      player.position + position
-    )
+    new_position = player.board_position + position
+    new_board_position = board.position(new_position)
 
-    if board_position.open?
-      player.position = player.position + position
-      board_position.occupy(player)
+    if new_board_position.open?
+      player.board_position = new_position
+      new_board_position.occupy(player)
     end
   end
 

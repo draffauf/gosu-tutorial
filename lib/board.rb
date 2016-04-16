@@ -48,10 +48,11 @@ private
         position_row = []
 
         columns.times do |column|
-          position_row << BoardPosition.new(
-            offset_x + column * position_width,
-            offset_y + row    * position_height
+          position = Position.new(
+            x: offset_x + column * position_width,
+            y: offset_y + row    * position_height
           )
+          position_row << BoardPosition.new(position)
         end
 
         board_positions << position_row

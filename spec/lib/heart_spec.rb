@@ -1,32 +1,22 @@
 require 'spec_helper'
 
 describe Heart do
-  let(:heart) { Heart.new 5, 10 }
+  let(:position) { Position.new(x: 5, y: 10, z: 0) }
+  let(:player)   { Player.new }
+  let(:heart) do
+    Heart.new position: position,
+              count: 0,
+              player: player
+  end
+
+  describe "constants" do
+    it { expect(described_class::SPRITE_SHEET ).not_to be_nil }
+    it { expect(described_class::SPRITE_SIZE  ).not_to be_nil }
+    it { expect(described_class::Z_INDEX      ).not_to be_nil }
+    it { expect(described_class::STATES       ).not_to be_nil }
+  end
 
   describe ".new" do
-    it { expect(heart.x           ).to eq 5        }
-    it { expect(heart.y           ).to eq 10       }
-    it { expect(heart.z           ).to eq 0        }
-    it { expect(heart.sprite_sheet).to eq "hearts" }
-    it { expect(heart.value       ).to eq 0        }
-    it { expect(heart.width       ).to eq 50       }
-    it { expect(heart.offset_y    ).to eq 0        }
-  end
-
-  describe ".draw" do
-    it "calls draw on the sprites" do
-      tile = double("Tile")
-      allow(heart).to receive(:sprite).and_return(tile)
-      expect(tile).to receive(:draw)
-      heart.draw
-    end
-  end
-
-  describe ".value=" do
-    it "nullifies the tile" do
-      expect(heart.value).to eq 0
-      heart.value = 1
-      expect(heart.value).to eq 1
-    end
+    it { expect(heart.position ).to eq position }
   end
 end

@@ -1,32 +1,18 @@
 require 'spec_helper'
 
 describe BoardItem do
-  let(:board_item) { BoardItem.new 5, 10 }
+  let(:position)   { Position.new(x: 5, y: 10, z: 1) }
+  let(:board_item) { BoardItem.new position }
+
+  describe "#SPRITE_SHEET" do
+    it { expect(described_class::SPRITE_SHEET).to eq "items" }
+  end
+
+  describe "#SPRITE_SIZE" do
+    it { expect(described_class::SPRITE_SIZE).to eq 100 }
+  end
 
   describe ".new" do
-    it { expect(board_item.x           ).to eq 5       }
-    it { expect(board_item.y           ).to eq 10      }
-    it { expect(board_item.z           ).to eq 1       }
-    it { expect(board_item.sprite_sheet).to eq "items" }
-    it { expect(board_item.value       ).to eq 0       }
-    it { expect(board_item.width       ).to eq 100     }
-    it { expect(board_item.offset_y    ).to eq -10     }
-  end
-
-  describe ".draw" do
-    it "calls draw on the sprites" do
-      tile = double("Tile")
-      allow(board_item).to receive(:sprite).and_return(tile)
-      expect(tile).to receive(:draw)
-      board_item.draw
-    end
-  end
-
-  describe ".value=" do
-    it "nullifies the tile" do
-      expect(board_item.value).to eq 0
-      board_item.value = 1
-      expect(board_item.value).to eq 1
-    end
+    it { expect(board_item.position    ).to eq position }
   end
 end

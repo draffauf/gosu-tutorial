@@ -1,15 +1,42 @@
-require_relative './board_sprite'
+require_relative 'has_sprite'
 
-class Heart < BoardSprite
-  attr_writer :value
+class Heart
+  STATES = {
+    unfillable: 0,
+    fillable:   1,
+    filled:     2
+  }
 
-  def initialize x, y
-    super x, y
+  SPRITE_SHEET = "hearts"
+  SPRITE_SIZE  = 50
+  Z_INDEX      = 0
 
-    @z            = 0
-    @sprite_sheet = "hearts"
-    @value        = 0
-    @offset_y     = 0
-    @width        = 50
+  attr_reader :position,
+              :count,
+              :player
+
+  include HasSprite
+
+  def initialize position: Position.new,
+                 count:,
+                 player:
+    @position     = position
+    @count        = count
+    @player       = player
+
+    @position.z   = Z_INDEX
+    sprite.value  = STATES[state]
+  end
+
+  private
+
+  def state
+    if (player.health >= count)
+      :filled
+    elsif (player.max_health >= count)
+      :fillable
+    else
+      :unfillable
+    end
   end
 end

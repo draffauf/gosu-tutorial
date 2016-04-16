@@ -1,9 +1,8 @@
 class BoardPosition
-  attr_reader :x, :y
+  attr_reader :position
 
-  def initialize x, y
-    @x = x
-    @y = y
+  def initialize position = Position.new
+    @position = position
     @is_open = true
   end
 
@@ -21,16 +20,17 @@ class BoardPosition
 
   def occupy player
     @is_open = false
+    player.position = position
     player.health += 1
   end
 
   private
 
   def item
-    @item ||= BoardItem.new x, y
+    @item ||= BoardItem.new(position + Position.new(y: -10))
   end
 
   def background
-    @background ||= BoardMap.new x, y
+    @background ||= BoardMap.new position
   end
 end

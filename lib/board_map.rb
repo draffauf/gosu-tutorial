@@ -1,13 +1,15 @@
-require_relative './board_sprite'
+require_relative 'has_sprite'
 
-class BoardMap < BoardSprite
-  def initialize x, y
-    super x, y
+class BoardMap
+  SPRITE_SHEET = "map"
+  SPRITE_SIZE  = 100
 
-    @z            = 0
-    @sprite_sheet = "map"
-    @value        = 0
-    @offset_y     = 0
-    @width        = 100
+  attr_accessor :position
+
+  include HasSprite
+
+  def initialize position = Position.new
+    @position = position
+    @position.z = 0
   end
 end

@@ -1,4 +1,10 @@
 class HeartMeter
+  COUNT        = 10
+  SPRITE_WIDTH = 50
+  SPRITE_Y     = 0
+
+  attr_reader :player, :health, :max_health
+
   def initialize player
     @player     = player
     @health     = player.health
@@ -6,8 +12,13 @@ class HeartMeter
   end
 
   def update
-    self.health=(player.health)         if health     != player.health
-    self.max_health=(player.max_health) if max_health != player.max_health
+    if health != player.health
+      self.health = player.health
+    end
+
+    if max_health != player.max_health
+      self.max_health = player.max_health
+    end
   end
 
   def draw
@@ -16,31 +27,34 @@ class HeartMeter
 
   private
 
-  attr_reader :player, :health, :max_health
-
   def health= value
     @health = value
-    @hearts = nil
+    reset
   end
 
   def max_health= value
     @max_health = value
-    @hearts = nil
+    reset
   end
 
   def hearts
-    count = 10
-    width = 50
-    y     = 0
-
     @hearts ||= [].tap do |hearts|
-      count.times do |index|
-        zero_based_index = index - 1
-        heart = Heart.new(zero_based_index * width, y)
-        heart.value = 1 if player.max_health > zero_based_index
-        heart.value = 2 if player.health     > zero_based_index
-        hearts << heart
+      COUNT.times do |index|
+        hearts << Heart.new(position: position(index),
+                            count:    index + 1,
+                            player:   player)
       end
     end
+  end
+
+  def reset
+    @hearts = nil
+  end
+
+  def position index
+    Position.new(
+      x: index * SPRITE_WIDTH,
+      y: SPRITE_Y
+    )
   end
 end

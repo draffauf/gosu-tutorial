@@ -1,16 +1,18 @@
 class Tile
-  def initialize sprite:, x: 0, y: 0, z: 0
-    @sprite = sprite
-    @x = x
-    @y = y
-    @z = z
+  attr_accessor :position
+
+  def initialize tile:, position: Position.new
+    @tile = tile
+    @position = position
   end
 
   def draw
-    sprite.draw x, y, z
+    tile.draw position.x,
+              position.y,
+              position.z
   end
 
 private
 
-  attr_reader :sprite, :x, :y, :z
+  attr_reader :tile
 end
