@@ -3,6 +3,8 @@ require_relative 'has_sprite'
 class Player
   SPRITE_SHEET = "player"
   SPRITE_SIZE  = 100
+  Y_OFFSET     = -35
+  Z_INDEX      = 2
 
   attr_reader   :position,
                 :health,
@@ -17,6 +19,8 @@ class Player
   def initialize board_position = Position.new(x: 0, y: 2)
     @board_position = board_position
     @position   = Position.new
+
+    # Stats: data clump?
     @health     = 3
     @max_health = 5
     @experience = 0
@@ -33,8 +37,8 @@ class Player
   def position= value
     adjusted_value = Position.new(
       x: value.x,
-      y: value.y - 35,
-      z: 2
+      y: value.y + Y_OFFSET,
+      z: Z_INDEX
     )
     @position = adjusted_value
     sprite.position = adjusted_value

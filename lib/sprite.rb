@@ -1,4 +1,8 @@
 class Sprite
+  DEFAULT_SIZE = 100
+  DEFAULT_SHEET = "map"
+  DEFAULT_TILE = 0
+
   attr_accessor :position
 
   attr_reader   :sprite_sheet,
@@ -6,14 +10,13 @@ class Sprite
                 :offset_y,
                 :width
 
-  def initialize position = Position.new,
-                 sprite_sheet = "map",
-                 size = 100
+  def initialize position     = Position.new,
+                 sprite_sheet = DEFAULT_SPRITE_SHEET,
+                 size         = DEFAULT_SIZE
     @position     = position
     @sprite_sheet = sprite_sheet
     @width        = size
-
-    @value = 0
+    @value        = DEFAULT_TILE
   end
 
   def draw
