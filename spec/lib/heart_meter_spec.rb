@@ -4,6 +4,12 @@ describe HeartMeter do
   let(:player)      { Player.new }
   let(:heart_meter) { HeartMeter.new player }
 
+  describe "constants" do
+    it { expect(described_class::COUNT       ).not_to be_nil }
+    it { expect(described_class::SPRITE_WIDTH).not_to be_nil }
+    it { expect(described_class::SPRITE_Y    ).not_to be_nil }
+  end
+
   describe ".update" do
     it "updates the heart meter with new values from the player" do
       allow(player).to receive(:max_health).and_return(player.max_health + 1)

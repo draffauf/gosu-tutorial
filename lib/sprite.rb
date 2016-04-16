@@ -1,7 +1,7 @@
 class Sprite
-  DEFAULT_SIZE = 100
   DEFAULT_SHEET = "map"
-  DEFAULT_TILE = 0
+  DEFAULT_SIZE  = 100
+  DEFAULT_TILE  = 0
 
   attr_accessor :position
 
@@ -11,7 +11,7 @@ class Sprite
                 :width
 
   def initialize position     = Position.new,
-                 sprite_sheet = DEFAULT_SPRITE_SHEET,
+                 sprite_sheet = DEFAULT_SHEET,
                  size         = DEFAULT_SIZE
     @position     = position
     @sprite_sheet = sprite_sheet
@@ -25,17 +25,20 @@ class Sprite
 
   def value= _value
     @value = _value
-    @sprite= nil
-    @tile  = nil
+    reset
   end
 
   def position= _position
     @position = _position
-    @sprite= nil
-    @tile  = nil
+    reset
   end
 
   private
+
+  def reset
+    @sprite = nil
+    @tile   = nil
+  end
 
   def sprite
     @sprite ||= Tile.new(

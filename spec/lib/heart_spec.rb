@@ -2,17 +2,21 @@ require 'spec_helper'
 
 describe Heart do
   let(:position) { Position.new(x: 5, y: 10, z: 0) }
-  let(:heart)    { Heart.new position }
-
-  describe "#SPRITE_SHEET" do
-    it { expect(described_class::SPRITE_SHEET).to eq "hearts" }
+  let(:player)   { Player.new }
+  let(:heart) do
+    Heart.new position: position,
+              count: 0,
+              player: player
   end
 
-  describe "#SPRITE_SIZE" do
-    it { expect(described_class::SPRITE_SIZE).to eq 50 }
+  describe "constants" do
+    it { expect(described_class::SPRITE_SHEET ).not_to be_nil }
+    it { expect(described_class::SPRITE_SIZE  ).not_to be_nil }
+    it { expect(described_class::Z_INDEX      ).not_to be_nil }
+    it { expect(described_class::STATES       ).not_to be_nil }
   end
 
   describe ".new" do
-    it { expect(heart.position    ).to eq position }
+    it { expect(heart.position ).to eq position }
   end
 end

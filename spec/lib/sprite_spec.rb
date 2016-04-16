@@ -4,6 +4,12 @@ describe Sprite do
   let(:position) { Position.new(x: 5, y: 10, z: 0) }
   let(:sprite)   { Sprite.new position }
 
+  describe "constants" do
+    it { expect(described_class::DEFAULT_SHEET).not_to be_nil }
+    it { expect(described_class::DEFAULT_SIZE ).not_to be_nil }
+    it { expect(described_class::DEFAULT_TILE ).not_to be_nil }
+  end
+
   describe ".new" do
     it { expect(sprite.position    ).to eq position }
     it { expect(sprite.sprite_sheet).to eq "map"    }
