@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BoardPosition do
   let(:position)       { Position.new(x: 200, y: 100, z: 0) }
-  let(:board_position) { BoardPosition.new position }
+  let(:board_position) { BoardPosition.new(position: position) }
 
   describe ".new" do
     it { expect(board_position.position).to eq position }

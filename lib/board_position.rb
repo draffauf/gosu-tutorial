@@ -1,10 +1,10 @@
 class BoardPosition
-  Y_OFFSET = -10
   attr_reader :position
 
-  def initialize position = Position.new
+  def initialize position: Position.new
     @position = position
-    @is_open = true
+    @is_open  = true
+    @delta_position
   end
 
   def update
@@ -12,7 +12,7 @@ class BoardPosition
 
   def draw
     background.draw
-    item.draw if open?
+    item.draw if item
   end
 
   def open?
@@ -20,19 +20,22 @@ class BoardPosition
   end
 
   def occupy player
-    @is_open = false
     background.visited!
     player.position = position
-    player.health += 1
+    item.interact(player)
+    @item = nil
+    @is_open = false
   end
 
   private
 
   def item
-    @item ||= BoardItem.new(position + Position.new(y: Y_OFFSET))
+    if open?
+      @item ||= BoardItem.new(position: position.dup)
+    end
   end
 
   def background
-    @background ||= BoardMap.new(position: position)
+    @background ||= BoardMap.new(position: position.dup)
   end
 end

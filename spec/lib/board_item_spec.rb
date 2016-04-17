@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BoardItem do
   let(:position)   { Position.new(x: 5, y: 10, z: 1) }
-  let(:board_item) { BoardItem.new position }
+  let(:board_item) { BoardItem.new(position: position) }
 
   describe "#SPRITE_SHEET" do
     it { expect(described_class::SPRITE_SHEET).to eq "items" }

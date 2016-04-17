@@ -5,9 +5,10 @@ class Scene
 
   def initialize board:  Board.new,
                  player: Player.new
-    @board   = board
-    @player  = player
-    @sprites = [@board, @player, HeartMeter.new(@player)]
+    @board       = board
+    @player      = player
+    @heart_meter = HeartMeter.new(player)
+    @sprites     = [@board, @player, @heart_meter]
 
     move_player Position.new
   end
