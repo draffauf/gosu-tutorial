@@ -12,6 +12,8 @@ describe HeartMeter do
 
   describe ".update" do
     it "updates the heart meter with new values from the player" do
+      expect(heart_meter.send(:max_health)).to eq 5
+      expect(heart_meter.send(:health)    ).to eq 3
       allow(player).to receive(:max_health).and_return(player.max_health + 1)
       allow(player).to receive(:health    ).and_return(player.health     + 1)
       heart_meter.update
