@@ -31,7 +31,7 @@ class BoardPosition
 
   def item
     if open?
-      @item ||= BoardItem.new(position: position.dup)
+      @item ||= Item::Base.random_item.new(position: position.dup)
     end
   end
 

@@ -1,29 +1,27 @@
 require 'spec_helper'
 
 describe HasSprite do
-  let(:dummy_class) do
-    class DummyClass
-      SPRITE_SHEET = "my_sprite_sheet"
-      SPRITE_SIZE  = 100
+  class DummyClass
+    SPRITE_SHEET = "my_sprite_sheet"
+    SPRITE_SIZE  = 100
 
-      def position; Position.new; end
+    def position; Position.new; end
 
-      include HasSprite
-    end
+    include HasSprite
   end
 
-  let(:subject) { dummy_class.new }
+  let(:subject) { DummyClass.new }
   let(:sprite)  { sprite = double("Sprite") }
 
   describe "::SPRITE_SHEET" do
     it "is my_sprite_sheet" do
-      expect(dummy_class::SPRITE_SHEET).to eq "my_sprite_sheet"
+      expect(DummyClass::SPRITE_SHEET).to eq "my_sprite_sheet"
     end
   end
 
   describe "::SPRITE_SIZE" do
     it "is 100" do
-      expect(dummy_class::SPRITE_SIZE).to eq 100
+      expect(DummyClass::SPRITE_SIZE).to eq 100
     end
   end
 
