@@ -17,6 +17,6 @@ describe TileSet do
 
   describe ".tiles" do
     before { Game.game_window = game_window }
-    it { expect(tile_set.tiles.size).to eq 1 }
+    it { expect(tile_set.tiles.size).to eq 2 }
   end
 end
