@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 module Item
   class Poison < Base
     def interact(player)

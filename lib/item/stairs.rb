@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 module Item
   class Stairs < Base
     def interact(player)
