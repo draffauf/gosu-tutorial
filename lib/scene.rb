@@ -10,7 +10,8 @@ class Scene
     @heart_meter = HeartMeter.new(player)
     @sprites     = [@board, @player, @heart_meter]
 
-    move_player Position.new
+    @player.board_position = board.starting_position
+    board.move(player: player)
   end
 
   def update
@@ -22,7 +23,8 @@ class Scene
   end
 
   def receive_input input
-    move_player Position.new(delta_attributes(input))
+    board.move player: player,
+               delta_position: Position.new(delta_attributes(input))
   end
 
   private
@@ -43,16 +45,4 @@ class Scene
       { y: 0,  x: 0  }
     end
   end
-
-  def move_player position
-    new_position       = player.board_position + position
-    new_board_position = board.position(new_position)
-
-    if new_board_position.open?
-      player.board_position = new_position
-      new_board_position.occupy(player)
-    end
-  end
-
-  attr_reader :board, :player
 end

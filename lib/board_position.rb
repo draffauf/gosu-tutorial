@@ -1,10 +1,11 @@
 class BoardPosition
-  attr_reader :position
+  attr_reader :position, :item
 
-  def initialize position: Position.new
+  def initialize position: Position.new,
+                 starting_item:
     @position = position
+    @item     = starting_item
     @is_open  = true
-    @delta_position
   end
 
   def update
@@ -19,20 +20,26 @@ class BoardPosition
     @is_open
   end
 
-  def occupy player
+  def occupy player, new_board_position
+    return unless open?
+
+    player.move new_board_position: new_board_position,
+                new_position: position
+    interact_with!(player)
     background.visited!
-    player.position = position
-    item.interact(player)
-    @item = nil
-    @is_open = false
+    close!
   end
 
   private
 
-  def item
-    if open?
-      @item ||= Item::Base.random_item.new(position: position.dup)
-    end
+  def close!
+    @is_open = false
+  end
+
+  def interact_with! player
+    return unless item
+    item.interact(player)
+    @item = nil
   end
 
   def background

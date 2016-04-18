@@ -35,7 +35,24 @@ class Board
     end
   end
 
+  def move player:,
+           delta_position: Position.new
+    new_position       = player.board_position + delta_position
+    new_board_position = position(new_position)
+    new_board_position.occupy(player, new_position)
+  end
+
+  def starting_position
+    @starting_position ||= Position.new(x: 0, y: 2)
+  end
+
 private
+
+  def starting_position? position
+    position.x == starting_position.x &&
+    position.y == starting_position.y &&
+    position.z == starting_position.z
+  end
 
   def within_bounds? y, x
     y.between?(0, rows    - 1) &&
@@ -45,16 +62,32 @@ private
   def positions
     @positions ||= [].tap do |board_positions|
       rows.times do |row|
-        position_row = []
+        position_row   = []
 
         columns.times do |column|
-          position_row << BoardPosition.new(position: board_position(
-                                                        row:    row,
-                                                        column: column))
+          board_position = board_position(  row: row,
+                                            column: column)
+
+          starting_item  = generate_item(   row: row,
+                                            column: column,
+                                            position: board_position)
+
+          position_row << BoardPosition.new(position: board_position,
+                                            starting_item: starting_item)
         end
 
         board_positions << position_row
       end
+    end
+  end
+
+  def generate_item row:,
+                    column:,
+                    position:
+    if !starting_position?(Position.new(x: column, y: row))
+      Item::Base.random_item.new(position: position.dup)
+    else
+      nil
     end
   end
 

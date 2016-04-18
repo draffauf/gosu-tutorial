@@ -16,8 +16,7 @@ class Player
 
   include HasSprite
 
-  def initialize board_position = Position.new(x: 0, y: 2)
-    @board_position = board_position
+  def initialize
     @position   = Position.new
 
     # Stats: data clump?
@@ -42,5 +41,11 @@ class Player
     )
     @position = adjusted_value
     sprite.position = adjusted_value
+  end
+
+  def move new_board_position:,
+           new_position:
+    self.board_position = new_board_position
+    self.position       = new_position
   end
 end

@@ -4,6 +4,7 @@ describe Scene do
   let(:game_window) { GameWindow.new }
   let(:scene)       { Scene.new }
   let(:player)      { Player.new }
+  let(:board)       { Board.new }
   let(:keys)        { {
                       left:  Gosu::KbLeft,
                       right: Gosu::KbRight,
@@ -18,9 +19,10 @@ describe Scene do
       expect(scene.sprites).to_not be_empty
     end
 
-    it "calls move_player" do
-      expect_any_instance_of(Scene).to receive(:move_player)
-      Scene.new
+    it "calls board.move(player)" do
+      expect(board).to receive(:move).with(player: player)
+      Scene.new board:  board,
+                player: player
     end
   end
 
